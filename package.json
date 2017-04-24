@@ -1,0 +1,11 @@
+{
+  "name": "where-is-iss",
+  "version": "1.0.0",
+  "description": "Simple React Redux App Showing ISS current location",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "aedriel",
+  "license": "ISC"
+}
