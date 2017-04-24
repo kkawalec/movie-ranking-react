@@ -1,0 +1,31 @@
+{
+  "root": true,
+  "extends": [
+    "eslint:recommended",
+    "airbnb"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 8,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "mocha": true
+  },
+  "parser": "babel-eslint",
+  "rules": {
+    "no-console": 1,
+    "react/no-deprecated": 2,
+    "react/jsx-filename-extension": [1, { "extensions": [".js"] }],
+    "no-extra-semi": 1,
+    "semi": [1, "never"],
+    "linebreak-style": [1, "windows"],
+    "import/prefer-default-export": [0],
+    "react/prefer-stateless-function": [0]
+  }
+}

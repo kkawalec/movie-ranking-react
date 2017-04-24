@@ -2,10 +2,70 @@
   "name": "where-is-iss",
   "version": "1.0.0",
   "description": "Simple React Redux App Showing ISS current location",
-  "main": "index.js",
+  "main": "app/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kkawalec/where-is-iss.git"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npm-run-all --parallel security-check hot lint:watch",
+    "security-check": "nsp check",
+    "lint": "esw webpack.config.* app/**  --color",
+    "lint:watch": "npm run lint -- --watch",
+    "test": "jest --watch",
+    "build-prod:frontend": "webpack --config webpack.config.frontend.prod.js --progress --color",
+    "clean": "rimraf dist",
+    "deploy": "npm run clean && npm run build-prod:frontend && surge ./dist aedriel-where-is-iss.surge.sh",
+    "hot": "node hot/hotServer"
   },
   "author": "aedriel",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-eslint": "^7.2.3",
+    "babel-loader": "^7.0.0",
+    "babel-preset-latest": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "css-loader": "^0.28.0",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.3",
+    "eslint-watch": "^3.1.0",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "file-loader": "^0.11.1",
+    "html-webpack-plugin": "^2.28.0",
+    "node-sass": "^4.5.2",
+    "npm-run-all": "^4.0.2",
+    "nsp": "^2.6.3",
+    "react-hot-loader": "^3.0.0-beta.6",
+    "rimraf": "^2.6.1",
+    "sass-loader": "^6.0.3",
+    "style-loader": "^0.16.1",
+    "webpack": "^2.4.1",
+    "webpack-dev-middleware": "^1.10.2",
+    "webpack-dev-server": "^2.4.4",
+    "webpack-hot-middleware": "^2.18.0",
+    "webpack-md5-hash": "0.0.5",
+    "webpack-notifier": "^1.5.0"
+  },
+  "dependencies": {
+    "material-ui": "^0.17.4",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-grid-system": "^2.7.1",
+    "react-notification-system-redux": "^1.0.11",
+    "react-redux": "^5.0.4",
+    "react-router": "^3.0.2",
+    "react-router-redux": "^4.0.8",
+    "react-tap-event-plugin": "^2.0.1",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0"
+  },
+  "engines": {
+    "node": "6.9.5",
+    "npm": "3.10.10"
+  }
 }
