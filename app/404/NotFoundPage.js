@@ -15,7 +15,7 @@ class NotFoundPage extends React.Component {
             <img src={issImg} alt="Internation Space Station" />
             <CardText>Page Not Found</CardText>
             <Link to="/">
-              <FlatButton label="Return to Dashboard" primary={true} />
+              <FlatButton label="Return to Dashboard" primary />
             </Link>
           </div>
         </Col>

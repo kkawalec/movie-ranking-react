@@ -9,7 +9,7 @@ class PageHeader extends React.Component {
       <Row>
         <AppBar
           title="Where is ISS?"
-          iconElementLeft={<img className="title-img" src={issIcon} />}
+          iconElementLeft={<img className="title-img" src={issIcon} alt="ISS" />}
         />
       </Row>
     )

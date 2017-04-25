@@ -7,6 +7,7 @@ import Subheader from 'material-ui/Subheader'
 import Map from './Map'
 import Loader from './Loader'
 import Addresses from './Addresses'
+import ErrorMessage from './ErrorMessage'
 import { getIssPositionRequest } from './issActions'
 
 
@@ -28,16 +29,17 @@ class ISSPage extends Component {
     const isGeoData = Object.getOwnPropertyNames(iss).length > 1
     return (
       <Row>
-        <Col xs={12} lg={6}>
+        <Col xs={12} lg={6} style={{ marginBottom: 15 }}>
           <Subheader>Current location of ISS</Subheader>
+          <ErrorMessage message={errorMessage} />
           <Addresses data={addressData} />
           { isLoading && <Loader /> }
         </Col>
         <Col xs={12} lg={6}>
           { isGeoData && <Map
-              lat={iss.latitude}
-              lng={iss.longitude}
-            /> }
+            lat={iss.latitude}
+            lng={iss.longitude}
+          /> }
         </Col>
       </Row>
     )

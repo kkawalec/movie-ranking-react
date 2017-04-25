@@ -23,7 +23,7 @@ export default (state = initialState, action = {}) => {
     case ISS_REQUEST_ERROR:
       return { ...state, loading: false, error: action.payload }
     case ISS_ADDRESS_REQUEST_SUCCESS:
-       return { ...state, loading: false, addressData: action.payload }
+      return { ...state, loading: false, addressData: action.payload }
     default: return state
   }
 }

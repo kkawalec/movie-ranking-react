@@ -6,7 +6,8 @@ class Loader extends React.Component {
   render() {
     return (
       <CardText style={{ display: 'flex', alignContent: 'center', justifyContent: 'center' }}>
-        <CircularProgress style={{ display: 'inline-block'}} /><p className="map-loader">Data is loading, please wait...</p>
+        <CircularProgress style={{ display: 'inline-block' }} />
+        <p className="map-loader">Data is loading, please wait...</p>
       </CardText>
     )
   }
