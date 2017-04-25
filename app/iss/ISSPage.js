@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import { Row, Col } from 'react-grid-system'
+import Subheader from 'material-ui/Subheader'
 
 import Map from './Map'
 import Loader from './Loader'
@@ -25,15 +27,19 @@ class ISSPage extends Component {
     const { iss, isLoading, errorMessage, addressData } = this.props
     const isGeoData = Object.getOwnPropertyNames(iss).length > 1
     return (
-      <div>
-        dashboard
-        <Addresses data={addressData} />
-        { isLoading && <Loader /> }
-        { isGeoData && <Map
-          lat={iss.latitude}
-          lng={iss.longitude}
-        /> }
-      </div>
+      <Row>
+        <Col xs={12} lg={6}>
+          <Subheader>Current location of ISS</Subheader>
+          <Addresses data={addressData} />
+          { isLoading && <Loader /> }
+        </Col>
+        <Col xs={12} lg={6}>
+          { isGeoData && <Map
+              lat={iss.latitude}
+              lng={iss.longitude}
+            /> }
+        </Col>
+      </Row>
     )
   }
 }

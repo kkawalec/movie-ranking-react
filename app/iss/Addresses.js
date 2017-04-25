@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
+import { CardText } from 'material-ui/Card'
 
-import Address from './Address'
+import Paper from 'material-ui/Paper'
+import { List, ListItem } from 'material-ui/List'
 
 class Addresses extends React.Component {
   static propTypes = {
@@ -10,11 +12,14 @@ class Addresses extends React.Component {
 
   render() {
     const { data } = this.props
-    console.log(data);
     return (
-      <div>
-        { data.map(location => <Address key={location.place_id} location={location} /> )}
-      </div>
+      <Paper zDepth={2}>
+      <List>
+        { data.length > 0 ?
+          data.map(location => <ListItem primaryText={location.formatted_address} key={location.place_id} /> )
+          : <ListItem primaryText={`We can't provide any address right now. Probably ISS is over the ocean now.`} />}
+      </List>
+      </Paper>
     )
   }
 }

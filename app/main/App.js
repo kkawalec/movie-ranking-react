@@ -18,7 +18,9 @@ class App extends Component {
         <div>
           <Container fluid >
             <PageHeader />
-            { this.props.children }
+            <div className="content">
+              { this.props.children }
+            </div>
           </Container>
         </div>
       </MuiThemeProvider>
