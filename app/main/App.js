@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { Container } from 'react-grid-system'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
@@ -8,7 +9,7 @@ require('./injectTap')
 
 class App extends Component {
   static propTypes = {
-    children: React.PropTypes.node.isRequired,
+    children: PropTypes.node.isRequired,
   }
 
   render() {

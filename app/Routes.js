@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Router, Route, IndexRoute } from 'react-router'
 
 import App from './main/App'
@@ -7,7 +8,7 @@ import NotFoundPage from './404/NotFoundPage'
 
 export default class Routes extends React.Component {
   static propTypes = {
-    history: React.PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired,
   }
 
   render() {

@@ -2,12 +2,15 @@ import {
   ISS_REQUEST_PENDING,
   ISS_REQUEST_SUCCESS,
   ISS_REQUEST_ERROR,
+  ISS_ADDRESS_REQUEST_SUCCESS,
+  ISS_ADDRESS_REQUEST_ERROR,
 } from '../store/constants'
 
 const initialState = {
   loading: false,
   data: {},
   error: '',
+  addressData: [],
 }
 
 export default (state = initialState, action = {}) => {
@@ -15,9 +18,12 @@ export default (state = initialState, action = {}) => {
     case ISS_REQUEST_PENDING:
       return { ...state, loading: true }
     case ISS_REQUEST_SUCCESS:
-      return { ...state, data: action.payload, loading: false, error: '' }
+      return { ...state, data: action.payload, error: '' }
+    case ISS_ADDRESS_REQUEST_ERROR:
     case ISS_REQUEST_ERROR:
       return { ...state, loading: false, error: action.payload }
+    case ISS_ADDRESS_REQUEST_SUCCESS:
+       return { ...state, loading: false, addressData: action.payload }
     default: return state
   }
 }
