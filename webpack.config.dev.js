@@ -36,12 +36,12 @@ module.exports = {
           'sass-loader?sourceMap'
         ]
       },
-      {
-        // Capture eot, ttf, svg, woff, and woff2
-        test: /\.(woff2?|ttf|svg|eot)(\?v=\d+\.\d+\.\d+)?$/,
-       // use: 'file-loader?name=fonts/[name].[ext]'
-        use: 'file-loader'
-      },
+      // {
+      //   // Capture eot, ttf, svg, woff, and woff2
+      //   test: /\.(woff2?|ttf|svg|eot)(\?v=\d+\.\d+\.\d+)?$/,
+      //  // use: 'file-loader?name=fonts/[name].[ext]'
+      //   use: 'file-loader'
+      // },
       {
         test: /\.(jpe?g|png|gif)$/i,
         use: 'file-loader'
@@ -49,9 +49,9 @@ module.exports = {
       },
     ]
   },
-  node: {
-    net: 'empty',
-    tls: 'empty',
-    dns: 'empty'
-  },
+  // node: {
+  //   net: 'empty',
+  //   tls: 'empty',
+  //   dns: 'empty'
+  // },
 }

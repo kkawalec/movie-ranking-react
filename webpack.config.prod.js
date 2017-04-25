@@ -31,7 +31,7 @@ module.exports = {
     }),
     //Create HTML file that includes reference to bundlejs
     new HtmlWebpackPlugin({
-      template: 'static/index.ejs',
+      template: 'template/index.ejs',
       filename: '200.html',
       inject: true,
       minify: {
@@ -50,10 +50,10 @@ module.exports = {
   ],
   module: {
     rules: [
-      {
-        test: /\.json$/,
-        use: 'json-loader'
-      },
+      // {
+      //   test: /\.json$/,
+      //   use: 'json-loader'
+      // },
       {
         test: /\.js?$/,
         exclude: /node_modules/,
@@ -67,29 +67,29 @@ module.exports = {
           publicPath: '../'
         })
       },
-      {
-        // Capture eot, ttf, svg, woff, and woff2
-        test: /\.(woff2?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
-        use: 'file-loader?name=/fonts/[hash].[ext]'
-      },
-      {
-        test: /\.svg$/,
-        use: [
-          {
-            loader: 'file-loader?name=/fonts/[hash].[ext]'
-          },
-          {
-            loader: 'svgo-loader',
-            options: {
-              plugins: [
-                {removeTitle: true},
-                {convertColors: {shorthex: false}},
-                {convertPathData: false}
-              ]
-            }
-          }
-        ]
-      },
+      // {
+      //   // Capture eot, ttf, svg, woff, and woff2
+      //   test: /\.(woff2?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
+      //   use: 'file-loader?name=/fonts/[hash].[ext]'
+      // },
+      // {
+      //   test: /\.svg$/,
+      //   use: [
+      //     {
+      //       loader: 'file-loader?name=/fonts/[hash].[ext]'
+      //     },
+      //     {
+      //       loader: 'svgo-loader',
+      //       options: {
+      //         plugins: [
+      //           {removeTitle: true},
+      //           {convertColors: {shorthex: false}},
+      //           {convertPathData: false}
+      //         ]
+      //       }
+      //     }
+      //   ]
+      // },
       {
         test: /\.(jpe?g|png|gif)$/i,
         use: 'file-loader?name=/img/[hash].[ext]'

@@ -13,9 +13,9 @@
     "lint": "esw app/** --color",
     "lint:watch": "npm run lint -- --watch",
     "test": "jest --watch",
-    "build-prod:frontend": "webpack --config webpack.config.frontend.prod.js --progress --color",
+    "build": "webpack --config webpack.config.prod.js --progress --color",
     "clean": "rimraf dist",
-    "deploy": "npm run clean && npm run build-prod:frontend && surge ./dist aedriel-where-is-iss.surge.sh",
+    "deploy": "npm run clean && npm run build && surge ./dist aedriel-where-is-iss.surge.sh",
     "hot": "node hot/hotServer"
   },
   "author": "aedriel",
