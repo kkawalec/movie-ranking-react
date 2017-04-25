@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Container } from 'react-grid-system'
-//import MainPageHeader from '../pageHeader/MainPageHeader'
-
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+
+import PageHeader from '../pageHeader/PageHeader'
 
 require('./injectTap')
 
@@ -16,6 +16,7 @@ class App extends Component {
       <MuiThemeProvider>
         <div>
           <Container fluid >
+            <PageHeader />
             { this.props.children }
           </Container>
         </div>

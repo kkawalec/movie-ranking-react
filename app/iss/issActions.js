@@ -1,5 +1,4 @@
 import axios from 'axios'
-import getTime from 'date-fns/get_time'
 
 import { ISS_REQUEST_PENDING, ISS_REQUEST_SUCCESS, ISS_REQUEST_ERROR } from '../store/constants'
 

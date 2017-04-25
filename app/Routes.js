@@ -7,7 +7,7 @@ import NotFoundPage from './404/NotFoundPage'
 
 export default class Routes extends React.Component {
   static propTypes = {
-    history: React.PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+    history: React.PropTypes.object.isRequired,
   }
 
   render() {

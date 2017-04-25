@@ -10,7 +10,7 @@
   "scripts": {
     "start": "npm-run-all --parallel security-check hot lint:watch",
     "security-check": "nsp check",
-    "lint": "esw webpack.config.* app/**  --color",
+    "lint": "esw app/** --color",
     "lint:watch": "npm run lint -- --watch",
     "test": "jest --watch",
     "build-prod:frontend": "webpack --config webpack.config.frontend.prod.js --progress --color",
@@ -36,6 +36,7 @@
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.3",
     "eslint-watch": "^3.1.0",
+    "express": "^4.15.2",
     "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.11.1",
     "html-webpack-plugin": "^2.28.0",
@@ -55,7 +56,6 @@
   },
   "dependencies": {
     "axios": "^0.16.1",
-    "date-fns": "^1.28.3",
     "material-ui": "^0.17.4",
     "prop-types": "^15.5.8",
     "react": "^15.5.4",

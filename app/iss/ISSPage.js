@@ -1,11 +1,19 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
 import Map from './Map'
+import Loader from './Loader'
 import { getIssPositionRequest } from './issActions'
 
 
-class ISSPage extends React.Component {
+class ISSPage extends Component {
+  static propTypes = {
+    getIssPositionRequest: PropTypes.func.isRequired,
+    iss: PropTypes.object.isRequired,
+    isLoading: PropTypes.bool.isRequired,
+    errorMessage: PropTypes.string.isRequired,
+  }
 
   componentDidMount() {
     this.props.getIssPositionRequest()
@@ -17,7 +25,8 @@ class ISSPage extends React.Component {
     return (
       <div>
         dashboard
-        { isLoading || isEmptyData ? 'loading' : <Map
+        { isLoading || isEmptyData ? <Loader /> :
+        <Map
           lat={iss.latitude}
           lng={iss.longitude}
         /> }
