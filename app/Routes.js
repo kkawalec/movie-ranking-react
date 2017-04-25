@@ -2,7 +2,7 @@ import React from 'react'
 import { Router, Route, IndexRoute } from 'react-router'
 
 import App from './main/App'
-import DashboardPage from './dashboard/DashboardPage'
+import ISSPage from './iss/ISSPage'
 import NotFoundPage from './404/NotFoundPage'
 
 export default class Routes extends React.Component {
@@ -16,7 +16,7 @@ export default class Routes extends React.Component {
     return (
       <Router history={history}>
         <Route path="/" component={App}>
-          <IndexRoute component={DashboardPage} />
+          <IndexRoute component={ISSPage} />
           <Route path="*" component={NotFoundPage} />
         </Route>
       </Router>

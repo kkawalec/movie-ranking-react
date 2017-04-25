@@ -1,0 +1,16 @@
+#editorconfig.org
+root = true
+
+[*]
+indent_style = space
+end_of_line = crlf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.md]
+trim_trailing_whitespace = false
+
+# Indentation override for all JS i SCSS files
+[**.js, **.ejs, **.json, **.scss]
+indent_size = 2

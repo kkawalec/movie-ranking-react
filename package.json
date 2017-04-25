@@ -24,6 +24,8 @@
     "babel-core": "^6.24.1",
     "babel-eslint": "^7.2.3",
     "babel-loader": "^7.0.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-latest": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
@@ -52,9 +54,13 @@
     "webpack-notifier": "^1.5.0"
   },
   "dependencies": {
+    "axios": "^0.16.1",
+    "date-fns": "^1.28.3",
     "material-ui": "^0.17.4",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
+    "react-google-map": "^3.0.1",
+    "react-google-maps-loader": "^2.0.2",
     "react-grid-system": "^2.7.1",
     "react-notification-system-redux": "^1.0.11",
     "react-redux": "^5.0.4",

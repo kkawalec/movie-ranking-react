@@ -1,0 +1,6 @@
+/**
+ * ISS Actions
+ */
+export const ISS_REQUEST_PENDING = 'ISS_REQUEST_PENDING'
+export const ISS_REQUEST_SUCCESS = 'ISS_REQUEST_SUCCESS'
+export const ISS_REQUEST_ERROR = 'ISS_REQUEST_ERROR'
