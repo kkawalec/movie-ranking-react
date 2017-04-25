@@ -12,18 +12,24 @@ class ISSPage extends React.Component {
   }
 
   render() {
+    const { iss, isLoading, errorMessage } = this.props
+    const isEmptyData = Object.getOwnPropertyNames(iss).length < 1
     return (
       <div>
         dashboard
-        <Map
-  />
+        { isLoading || isEmptyData ? 'loading' : <Map
+          lat={iss.latitude}
+          lng={iss.longitude}
+        /> }
       </div>
     )
   }
 }
 
 const mapStateToProps = state => ({
-
+  iss: state.iss.data,
+  isLoading: state.iss.loading,
+  errorMessage: state.iss.error,
 })
 
 export default connect(mapStateToProps, { getIssPositionRequest })(ISSPage)

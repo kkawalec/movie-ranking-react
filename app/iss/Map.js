@@ -1,14 +1,21 @@
-import React, {PropTypes} from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 import GoogleMap from 'react-google-map'
 import GoogleMapLoader from 'react-google-maps-loader'
 
-const MY_API_KEY = "AIzaSyBslnxEErYjudQo2CqACdKj4adUyZ4wOuM" // fake
+import issIcon from '../../img/iss.png'
+import config from '../config'
 
-const Map = ({googleMaps}) => (
-  // GoogleMap component has a 100% height style.
-  // You have to set the DOM parent height.
-  // So you can perfectly handle responsive with differents heights.
+class Map extends Component {
+  static propTypes = {
+    googleMaps: PropTypes.object.isRequired,
+  }
+
+render() {
+  const { googleMaps, lat, lng } = this.props
+  console.log(googleMaps.Animation)
+  return (
   <div className="google-map">
     <GoogleMap
       googleMaps={googleMaps}
@@ -17,9 +24,10 @@ const Map = ({googleMaps}) => (
       coordinates={[
         {
           title: "ISS position",
+          icon: issIcon,
           position: {
-            lat: 43.604363,
-            lng: 1.443363,
+            lat,
+            lng,
           },
           onLoaded: (googleMaps, map, marker) => {
             // Set Marker animation
@@ -29,11 +37,9 @@ const Map = ({googleMaps}) => (
             const infoWindow = new googleMaps.InfoWindow({
               content: `
                 <div>
-                  <h3>Toulouse<h3>
+                  <h3>ISS<h3>
                   <div>
-                    Toulouse is the capital city of the southwestern
-                    French department of Haute-Garonne,
-                    as well as of the Occitanie region.
+                    Lorem ipsum
                   </div>
                 </div>
               `,
@@ -43,27 +49,20 @@ const Map = ({googleMaps}) => (
             googleMaps.event.addListener(marker, "click", () => {
               infoWindow.open(map, marker)
             })
-
-
-            // Open InfoWindow directly
-            infoWindow.open(map, marker)
           },
         }
       ]}
-      center={{lat: 43.604363, lng: 1.443363}}
-      zoom={8}
+      center={{lat, lng}}
+      zoom={4}
       onLoaded={(googleMaps, map) => {
-        map.setMapTypeId(googleMaps.MapTypeId.SATELLITE)
+        map.setMapTypeId(googleMaps.MapTypeId.HYBRID)
       }}
     />
   </div>
-)
-
-Map.propTypes = {
-  googleMaps: PropTypes.object.isRequired,
+) }
 }
 
 export default GoogleMapLoader(Map, {
   libraries: ["places"],
-  key: MY_API_KEY,
+  key: config.googleMapsKey,
 })
