@@ -22,7 +22,7 @@ export function getLocationRequestSuccess(data) {
 
 /**
  *
- * @param {*} err
+ * @param {string} err
  */
 export function getLocationRequestError(err) {
   return {
