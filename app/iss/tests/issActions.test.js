@@ -32,13 +32,6 @@ describe('action creators', () => {
     expect(actions.getIssPositionRequestPending()).toEqual(expectedAction)
   })
 
-  it('should create an iss request pending action', () => {
-    const expectedAction = {
-      type: types.ISS_REQUEST_PENDING,
-    }
-    expect(actions.getIssPositionRequestPending()).toEqual(expectedAction)
-  })
-
   it('should create an iss request success action', () => {
     const data = {}
     const expectedAction = {
@@ -72,32 +65,32 @@ const fakeGet = axios.get
 const fakeISSRequestPayload = { status: 200, data: { longitude: 0, latitude: 0 } }
 
 describe('async action', () => {
-    beforeEach(() => {
-        // replace the .get method temporarily with a spy
-        axios.get = spyExpect.createSpy().andReturn(Promise.resolve(fakeISSRequestPayload));
-    })
+  beforeEach(() => {
+  // replace the .get method temporarily with a spy
+    axios.get = spyExpect.createSpy().andReturn(Promise.resolve(fakeISSRequestPayload))
+  })
 
-    afterEach(() => {
-        // restore the get method with our saved const
-        axios.get = fakeGet
-    })
+  afterEach(() => {
+    // restore the get method with our saved const
+    axios.get = fakeGet
+  })
 
-    it('Shold dispatch actions when iss request is successful', function () {
-        const store = mockStore({
-            iss: {},
-        })
-        const expected = [
-            {type: types.ISS_REQUEST_PENDING},
-            {type: types.ISS_REQUEST_SUCCESS, payload: fakeISSRequestPayload.data }
-        ]
-
-        return store.dispatch(actions.getIssPositionRequest())
-            .then( () => {
-              expect(store.getActions()[0]).toEqual(expected[0])
-              expect(store.getActions()[1]['type']).toEqual(types.ISS_REQUEST_SUCCESS)
-              expect(store.getActions()[1]).toHaveProperty('payload')
-              expect(store.getActions()[1]['payload']).toHaveProperty('longitude')
-              expect(store.getActions()[1]['payload']).toHaveProperty('latitude')
-            })
+  it('Shold dispatch actions when iss request is successful', () => {
+    const store = mockStore({
+      iss: {},
     })
+    const expected = [
+      { type: types.ISS_REQUEST_PENDING },
+      { type: types.ISS_REQUEST_SUCCESS, payload: fakeISSRequestPayload.data },
+    ]
+
+    return store.dispatch(actions.getIssPositionRequest())
+      .then(() => {
+        expect(store.getActions()[0]).toEqual(expected[0])
+        expect(store.getActions()[1].type).toEqual(types.ISS_REQUEST_SUCCESS)
+        expect(store.getActions()[1]).toHaveProperty('payload')
+        expect(store.getActions()[1].payload).toHaveProperty('longitude')
+        expect(store.getActions()[1].payload).toHaveProperty('latitude')
+      })
+  })
 })

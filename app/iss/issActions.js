@@ -47,7 +47,7 @@ export function getLocationRequest(lat, lng) {
       })
       dispatch(getLocationRequestSuccess(data.results))
     } catch (err) {
-      dispatch(getLocationRequestError(err))
+      dispatch(getLocationRequestError('Can not get addresses from Google API.'))
     }
   }
 }

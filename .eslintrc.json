@@ -2,7 +2,8 @@
   "root": true,
   "extends": [
     "eslint:recommended",
-    "airbnb"
+    "airbnb",
+    "plugin:jest/recommended"
   ],
   "parserOptions": {
     "ecmaVersion": 8,
@@ -15,8 +16,12 @@
   "env": {
     "browser": true,
     "node": true,
-    "jest": true
+    "jest": true,
+    "jest/globals": true
   },
+  "plugins": [
+    "jest"
+  ],
   "parser": "babel-eslint",
   "rules": {
     "no-console": 1,
