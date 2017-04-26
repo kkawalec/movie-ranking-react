@@ -8,6 +8,9 @@ import config from '../config'
 import issIcon from '../../img/iss.png'
 import issInfoWindowTemplate from './issInfoWindowTemplate'
 
+/**
+ * Class wrapping GoogleMap Component
+ */
 class Map extends Component {
   static propTypes = {
     googleMaps: PropTypes.object.isRequired,
