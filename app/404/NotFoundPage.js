@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Link } from 'react-router'
 import { CardText } from 'material-ui/Card'
 import { Row, Col } from 'react-grid-system'
@@ -6,7 +6,13 @@ import FlatButton from 'material-ui/FlatButton'
 
 import issImg from '../../img/iss.png'
 
-class NotFoundPage extends React.Component {
+/**
+ * Class rendering 404 - Not Found Page
+ */
+class NotFoundPage extends Component {
+  /**
+   * Rendering component
+   */
   render() {
     return (
       <Row>

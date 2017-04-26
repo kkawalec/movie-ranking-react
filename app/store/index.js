@@ -12,6 +12,9 @@ const enhancer = env === 'development' ? compose(
    window.devToolsExtension ? window.devToolsExtension() : f => f,
 ) : compose(applyMiddleware(thunk, routerMiddleware(browserHistory)))
 
+/**
+ * Redux store configuration
+ */
 const store = createStore(mainReducer, enhancer)
 
 export default store

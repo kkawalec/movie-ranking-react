@@ -13,6 +13,12 @@ const initialState = {
   addressData: [],
 }
 
+/**
+ * ISS Reducer
+ * @param {Object} state
+ * @param {Object} action
+ * @return {Object}
+ */
 export default (state = initialState, action = {}) => {
   switch (action.type) {
     case ISS_REQUEST_PENDING:

@@ -1,8 +1,14 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { CardText } from 'material-ui/Card'
 import CircularProgress from 'material-ui/CircularProgress'
 
-class Loader extends React.Component {
+/**
+ * Class showing loader if http request is pending
+ */
+class Loader extends Component {
+  /**
+   * Render simple loader
+   */
   render() {
     return (
       <CardText style={{ display: 'flex', alignContent: 'center', justifyContent: 'center' }}>

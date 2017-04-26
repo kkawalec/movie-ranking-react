@@ -1,9 +1,16 @@
-import React from 'react'
+import React, { Component } from 'react'
 import AppBar from 'material-ui/AppBar'
 import { Row } from 'react-grid-system'
+
 import issIcon from '../../img/iss.png'
 
-class PageHeader extends React.Component {
+/**
+ * Class rendering page header
+ */
+class PageHeader extends Component {
+  /**
+   * Rendering PageHeader Component
+   */
   render() {
     return (
       <Row>

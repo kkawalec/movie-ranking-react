@@ -3,11 +3,20 @@ import Paper from 'material-ui/Paper'
 import React, { Component } from 'react'
 import { List, ListItem } from 'material-ui/List'
 
+/**
+ * Class handling rendering list of addresses
+ */
 class Addresses extends Component {
+  /**
+   * Addresses prop types check
+   */
   static propTypes = {
     data: PropTypes.array.isRequired,
   }
 
+  /**
+   * Rendering list of addresses
+   */
   render() {
     const { data } = this.props
     return (

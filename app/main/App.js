@@ -7,11 +7,20 @@ import PageHeader from '../pageHeader/PageHeader'
 
 require('./injectTap')
 
+/**
+ * Main Component of the application
+ */
 class App extends Component {
+  /**
+   * App prop types check
+   */
   static propTypes = {
     children: PropTypes.node.isRequired,
   }
 
+  /**
+   * Main rendering function handler in app
+   */
   render() {
     return (
       <MuiThemeProvider>

@@ -1,0 +1,9 @@
+{
+  "source": "app",
+  "destination": "./esdoc",
+  "experimentalProposal": {
+    "classProperties": true,
+    "objectRestSpread": true
+  },
+  "lint": false
+}
