@@ -91,7 +91,7 @@ export function getIssPositionRequest() {
   return async (dispatch) => {
     dispatch(getIssPositionRequestPending())
     try {
-      const { data } = await axios.get('https://api.wheretheiss.at/v1/satellites/25544')
+      const { data } = await axios.get('https://api.wheretheiss.at/v1/satellites/2554466')
       dispatch(getIssPositionRequestSuccess(data))
       dispatch(getLocationRequest(data.latitude, data.longitude))
     } catch (err) {
