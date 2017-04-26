@@ -3,12 +3,12 @@ import { connect } from 'react-redux'
 import React, { Component } from 'react'
 import { Row, Col } from 'react-grid-system'
 import Subheader from 'material-ui/Subheader'
-import RaisedButton from 'material-ui/RaisedButton'
 
 import Map from './Map'
 import Loader from './Loader'
 import Addresses from './Addresses'
 import ErrorMessage from './ErrorMessage'
+import RefreshButton from './RefreshButton'
 import { getIssPositionRequest } from './issActions'
 
 /**
@@ -42,22 +42,13 @@ class ISSPage extends Component {
       <Row>
         <Col xs={12} lg={6} style={{ marginBottom: 15 }}>
           <Subheader>Current location of ISS</Subheader>
-          <RaisedButton
-            label="Refresh"
-            secondary
-            onClick={this.handleRefresh}
-            disabled={isLoading}
-            style={{ marginBottom: 10 }}
-          />
+          <RefreshButton handleRefresh={this.handleRefresh} isLoading={isLoading} />
           <ErrorMessage message={errorMessage} />
           <Addresses data={addressData} />
           { isLoading && <Loader /> }
         </Col>
         <Col xs={12} lg={6}>
-          { isGeoData && <Map
-            lat={iss.latitude}
-            lng={iss.longitude}
-          /> }
+          { isGeoData && <Map lat={iss.latitude} lng={iss.longitude} /> }
         </Col>
       </Row>
     )

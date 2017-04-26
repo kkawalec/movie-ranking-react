@@ -6,7 +6,7 @@ import GoogleMapLoader from 'react-google-maps-loader'
 
 import config from '../config'
 import issIcon from '../../img/iss.png'
-import issInfoWindowTemplate from './issInfoWindowTemplate'
+import googleMapsOnLoad from './utils/googleMapsOnLoad'
 
 /**
  * Class wrapping GoogleMap Component
@@ -33,20 +33,7 @@ class Map extends Component {
                 lat,
                 lng,
               },
-              onLoaded: (gMaps, map, marker) => {
-                // Set Marker animation
-                marker.setAnimation(gMaps.Animation.BOUNCE)
-
-                // Define Marker InfoWindow
-                const infoWindow = new gMaps.InfoWindow({
-                  content: issInfoWindowTemplate,
-                })
-
-                // Open InfoWindow when Marker will be clicked
-                gMaps.event.addListener(marker, 'click', () => {
-                  infoWindow.open(map, marker)
-                })
-              },
+              onLoaded: googleMapsOnLoad,
             },
           ]}
           center={{ lat, lng }}
