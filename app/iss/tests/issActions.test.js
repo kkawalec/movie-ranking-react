@@ -64,9 +64,9 @@ const fakeGet = axios.get
  */
 const fakeISSRequestPayload = { status: 200, data: { longitude: 0, latitude: 0 } }
 
-describe('async action resolved', () => {
+describe('async iss api request action resolved', () => {
   beforeEach(() => {
-  // replace the .get method temporarily with a spy
+    // replace the .get method temporarily with a spy
     axios.get = spyExpect.createSpy().andReturn(Promise.resolve(fakeISSRequestPayload))
   })
 
@@ -98,7 +98,7 @@ describe('async action resolved', () => {
 const fakeErrorRequestPayload = { status: 404, response: { data: { error: 'satellite not found' } } }
 describe('async action rejected', () => {
   beforeEach(() => {
-  // replace the .get method temporarily with a spy
+    // replace the .get method temporarily with a spy
     axios.get = spyExpect.createSpy().andReturn(Promise.reject(fakeErrorRequestPayload))
   })
 
@@ -122,6 +122,57 @@ describe('async action rejected', () => {
         expect(store.getActions()[1].type).toEqual(types.ISS_REQUEST_ERROR)
         expect(store.getActions()[1]).toHaveProperty('payload')
         expect(store.getActions()[1].payload).toBe('satellite not found')
+      })
+  })
+
+  it('Shold dispatch actions when google api request return error', () => {
+    const store = mockStore({
+      iss: {},
+    })
+    const expected = {
+      type: types.ISS_ADDRESS_REQUEST_ERROR,
+      payload: 'Can not get addresses from Google API.',
+    }
+
+    return store.dispatch(actions.getLocationRequest(0, 0))
+      .then(() => {
+        const storeAction = store.getActions()[0]
+        expect(storeAction).toEqual(expected)
+        expect(storeAction.type).toEqual(types.ISS_ADDRESS_REQUEST_ERROR)
+        expect(typeof (storeAction.payload)).toEqual('string')
+      })
+  })
+})
+
+
+const fakeGeoLocationRequestSuccessPayload = { data: { status: 'OK', results: [] } }
+describe('async google api request action resolved', () => {
+  beforeEach(() => {
+    // replace the .get method temporarily with a spy
+    axios.get = spyExpect.createSpy()
+      .andReturn(Promise.resolve(fakeGeoLocationRequestSuccessPayload))
+  })
+
+  afterEach(() => {
+    // restore the get method with our saved const
+    axios.get = fakeGet
+  })
+
+  it('Shold dispatch actions when google api request is successful', () => {
+    const store = mockStore({
+      iss: {},
+    })
+
+    const expected = {
+      type: types.ISS_ADDRESS_REQUEST_SUCCESS,
+      payload: [],
+    }
+
+    return store.dispatch(actions.getLocationRequest(44, -99))
+      .then(() => {
+        const storeAction = store.getActions()[0]
+        expect(storeAction.type).toEqual(expected.type)
+        expect(storeAction.payload).toEqual(expected.payload)
       })
   })
 })

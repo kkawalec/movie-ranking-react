@@ -39,7 +39,7 @@ export function getLocationRequestError(err) {
 export function getLocationRequest(lat, lng) {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
+      const { data } = await axios.get(config.googleApiEnpoint, {
         params: {
           latlng: `${lat},${lng}`,
           key: config.googleMapsKey,
@@ -91,7 +91,7 @@ export function getIssPositionRequest() {
   return async (dispatch) => {
     dispatch(getIssPositionRequestPending())
     try {
-      const { data } = await axios.get('https://api.wheretheiss.at/v1/satellites/25544')
+      const { data } = await axios.get(config.apiEndpoint)
       dispatch(getIssPositionRequestSuccess(data))
       dispatch(getLocationRequest(data.latitude, data.longitude))
     } catch (err) {
