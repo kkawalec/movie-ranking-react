@@ -30,7 +30,7 @@ describe('<ErrorMessage />', () => {
     expect(nullComponent.find(ErrorMessage).component).toBe(null)
   })
 
-  it('Should be disabled when loading', () => {
+  it('Should display message text', () => {
     const button = renderedComponent.find(ErrorMessage)
     expect(button.props().message).toBe(props.message)
     expect(button.find('span').text()).toBe(props.message)
