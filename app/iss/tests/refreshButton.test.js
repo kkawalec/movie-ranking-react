@@ -27,7 +27,7 @@ describe('<RefreshButton />', () => {
 
   it('Should be disabled when loading', () => {
     const button = shallowComponent.find(RefreshButton)
-    expect(button.props().isLoading).toBe(true);
+    expect(button.props().isLoading).toBe(true)
     expect(button.find('button').html()).toContain('disabled=""')
   })
 
