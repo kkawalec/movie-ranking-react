@@ -1,17 +1,17 @@
 import React from 'react'
+import sinon from 'sinon'
 import { mount } from 'enzyme'
+import RaisedButton from 'material-ui/RaisedButton'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import sinon from 'sinon'
+
 import RefreshButton from '../RefreshButton'
-import RaisedButton from 'material-ui/RaisedButton'
+
 const props = {
   handleRefresh: sinon.spy(),
   isLoading: true,
 }
 
-// Needed for onTouchTap
-// http://stackoverflow.com/a/34015469/988941
 injectTapEventPlugin()
 
 const shallowComponent = mount(
@@ -37,7 +37,7 @@ describe('<RefreshButton />', () => {
   })
 
   it('should not invoke onClick callback when on click when disabled', () => {
-    shallowComponent.find(RaisedButton).simulate('click');
-    expect(props.handleRefresh.notCalled).toBe(true); //false
-  });
+    shallowComponent.find(RaisedButton).simulate('click')
+    expect(props.handleRefresh.notCalled).toBe(true)
+  })
 })

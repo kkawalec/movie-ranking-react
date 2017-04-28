@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import { List, ListItem } from 'material-ui/List'
+import { ListItem } from 'material-ui/List'
 import Addresses from '../Addresses'
 
 // Needed for onTouchTap
@@ -39,11 +39,11 @@ describe('<Addresses />', () => {
     expect(nullComponent.find(ListItem).length).toBe(1)
   })
 
- it('Should display two messages when list contains two addresses', () => {
+  it('Should display two messages when list contains two addresses', () => {
     expect(fullComponent.find(ListItem).length).toBe(2)
   })
 
- it('Address should have proper key', () => {
+  it('Address should have proper key', () => {
     expect(fullComponent.find(ListItem).first().key()).toBe('555')
   })
 
