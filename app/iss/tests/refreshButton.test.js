@@ -2,11 +2,11 @@ import React from 'react'
 import { mount } from 'enzyme'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-
+import sinon from 'sinon'
 import RefreshButton from '../RefreshButton'
-
+import RaisedButton from 'material-ui/RaisedButton'
 const props = {
-  handleRefresh: jest.fn(),
+  handleRefresh: sinon.spy(),
   isLoading: true,
 }
 
@@ -35,4 +35,9 @@ describe('<RefreshButton />', () => {
     const button = shallowComponent.find(RefreshButton)
     expect(button.props().handleRefresh).toBe(props.handleRefresh)
   })
+
+  it('should not invoke onClick callback when on click when disabled', () => {
+    shallowComponent.find(RaisedButton).simulate('click');
+    expect(props.handleRefresh.notCalled).toBe(true); //false
+  });
 })
