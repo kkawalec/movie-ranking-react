@@ -1,14 +1,15 @@
 import PropTypes from 'prop-types'
 import Paper from 'material-ui/Paper'
+import Avatar from 'material-ui/Avatar'
 import React, { Component } from 'react'
 import { List, ListItem } from 'material-ui/List'
 
 /**
  * Class handling rendering list of addresses
  */
-class Addresses extends Component {
+class MoviesList extends Component {
   /**
-   * Addresses prop types check
+   * MoviesList prop types check
    */
   static propTypes = {
     data: PropTypes.array.isRequired,
@@ -23,13 +24,13 @@ class Addresses extends Component {
       <Paper zDepth={2}>
         <List>
           { data.length > 0 ?
-            data.map(location =>
-              <ListItem primaryText={location.formatted_address} key={location.place_id} />)
-            : <ListItem primaryText="We can't provide any address right now. Probably ISS is over the ocean now." />}
+            data.map(movie =>
+              <ListItem primaryText={movie.title} key={movie.id}  leftAvatar={<Avatar style={{ borderRadius: 0 }} src={movie.poster} />} />)
+            : <ListItem primaryText="We can't find any movies right now..." />}
         </List>
       </Paper>
     )
   }
 }
 
-export default Addresses
+export default MoviesList

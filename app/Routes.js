@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { Router, Route, IndexRoute } from 'react-router'
 
 import App from './main/App'
-import ISSPage from './iss/ISSPage'
+import MoviesListPage from './movies/MoviesListPage'
 import NotFoundPage from './404/NotFoundPage'
 
 /**
@@ -26,7 +26,7 @@ export default class Routes extends Component {
     return (
       <Router history={history}>
         <Route path="/" component={App}>
-          <IndexRoute component={ISSPage} />
+          <IndexRoute component={MoviesListPage} />
           <Route path="*" component={NotFoundPage} />
         </Route>
       </Router>

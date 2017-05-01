@@ -1,14 +1,14 @@
 import { combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'
 
-import iss from '../iss/issReducer'
+import movies from '../movies/moviesReducer'
 
 /**
  * Main reducer of the application
  */
 const appReducer = combineReducers({
   routing: routerReducer,
-  iss,
+  movies,
 })
 
 export default appReducer
