@@ -1,7 +1,7 @@
 {
-  "name": "where-is-iss",
+  "name": "movie-ranking",
   "version": "1.0.0",
-  "description": "Simple React Redux App Showing ISS current location",
+  "description": "Simple React Redux App displaying list of movies",
   "main": "app/index.js",
   "repository": {
     "type": "git",
@@ -15,7 +15,7 @@
     "test": "jest --watch",
     "build": "webpack --config webpack.config.prod.js --progress --color",
     "clean": "rimraf dist",
-    "deploy": "npm run clean && npm run build && surge ./dist aedriel-where-is-iss.surge.sh",
+    "deploy": "npm run clean && npm run build && surge ./dist aedriel-movie-ranking.surge.sh",
     "hot": "node hot/hotServer",
     "doc": "esdoc -c esdoc.json"
   },
