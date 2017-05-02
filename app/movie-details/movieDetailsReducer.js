@@ -12,7 +12,8 @@ const initialState = {
   avgRating: 0,
   ratings: {},
   error: '',
-  userRating: {}
+  userRating: {},
+  movieId: undefined,
 }
 
 const arraySumCallback = (previousValue, currentValue) => {
@@ -46,6 +47,8 @@ export default (state = initialState, action = {}) => {
         avgRating: action.payload.length !== 0 ? action.payload.reduce(arraySumCallback, 0) / action.payload.length : 0,
         ratings: action.payload.reduce(ratingsCount, {}),
         error: '',
+        movieId: action.movieId,
+        userRating: action.movieId === state.movieId ? state.userRating : {}
       }
     case MOVIE_RANKING_REQUEST_ERROR:
     case MOVIE_RANKING_POST_ERROR:

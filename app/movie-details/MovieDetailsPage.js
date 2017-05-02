@@ -52,11 +52,12 @@ class MoviesDetailsPage extends Component {
     return (
       <Row>
         <Col xs={12} lg={3} style={{ marginBottom: 15 }}>
-          <ErrorMessage message={errorMessage} />
+
           { isLoading && <Loader /> }
           { !isLoading && <PosterCard movie={movieData} />}
         </Col>
         <Col xs={12} lg={6} style={{ marginBottom: 15 }}>
+           <ErrorMessage message={errorMessage} />
           { !isLoading && <RankingCard ratings={ratings} avgRating={avgRating} isLoading={isLoading} handleRefresh={this.handleRefresh} handlePost={this.handleAddRating} userRating={userRating} />}
         </Col>
       </Row>

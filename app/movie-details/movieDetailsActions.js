@@ -25,10 +25,11 @@ export function getMovieRankingRequestPending() {
  * Getting succesfully movies data from api
  * @param {array} data
  */
-export function getMovieRankingRequestSuccess(data) {
+export function getMovieRankingRequestSuccess(data, id) {
   return {
     type: MOVIE_RANKING_REQUEST_SUCCESS,
     payload: data,
+    movieId: id,
   }
 }
 
@@ -53,7 +54,7 @@ export function getMovieRankingRequest(id) {
     dispatch(getMovieRankingRequestPending())
     try {
       const { data } = await axios.get(`${config.apiEndpoint}/movies/${id}/ratings`)
-      dispatch(getMovieRankingRequestSuccess(data))
+      dispatch(getMovieRankingRequestSuccess(data, id))
     } catch (err) {
       const error = err.message
       dispatch(getMovieRankingRequestError(error))
@@ -88,12 +89,10 @@ export function addMovieRatingRequest(id, rating) {
     try {
       const { data } = await axios.post(`${config.apiEndpoint}/movies/${id}/ratings`, { rating })
       dispatch(addMovieRatingSuccess(data))
-    } catch (err) { console.error(err)
-      //const error = err.message
-    //   dispatch(getMovieRankingRequestError(error))
-    //   setTimeout(() => {
-    //     dispatch(getMovieRankingRequest(id))
-    //   }, 5000)
+      dispatch(getMovieRankingRequest(id))
+    } catch ({response}) { console.log('err', response)
+      const error = response.data.errors[0]
+      dispatch(addMovieRatingError(error))
     }
   }
 }
