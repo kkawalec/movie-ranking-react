@@ -4,7 +4,7 @@ import {
   MOVIES_REQUEST_ERROR,
   MOVIES_SORT,
 } from '../store/constants'
-import moviesComparator from './utils/moviesComparator'
+import moviesComparator from '../utils/array-callbacks/moviesComparator'
 
 const initialState = {
   loading: false,
@@ -14,7 +14,7 @@ const initialState = {
 }
 
 /**
- * ISS Reducer
+ * Movies list Reducer
  * @param {Object} state
  * @param {Object} action
  * @return {Object}

@@ -5,12 +5,12 @@ import React, { Component } from 'react'
 import { Row, Col } from 'react-grid-system'
 import Subheader from 'material-ui/Subheader'
 
-import Loader from './Loader'
 import MoviesList from './MoviesList'
-import ErrorMessage from './ErrorMessage'
-import RefreshButton from './RefreshButton'
-import SortButton from './SortButton'
-import { getMoviesListRequest, sortMovies } from './moviesActions'
+import Loader from '../utils/components/Loader'
+import ErrorMessage from '../utils/components/ErrorMessage'
+import RefreshButton from '../utils/components/RefreshButton'
+import SortButton from '../utils/components/SortButton'
+import { getMoviesListRequest, sortMovies, redirectToMovieDetails } from './moviesActions'
 
 /**
  * Class rendering main page of the app
@@ -23,6 +23,7 @@ class MoviesListPage extends Component {
     isLoading: PropTypes.bool.isRequired,
     errorMessage: PropTypes.string.isRequired,
     sort: PropTypes.number.isRequired,
+    redirectToMovieDetails: PropTypes.func.isRequired,
   }
 
   componentDidMount() {
@@ -45,6 +46,10 @@ class MoviesListPage extends Component {
     this.props.sortMovies()
   }
 
+  handleSelectMovie = (id) => {
+    this.props.redirectToMovieDetails(id)
+  }
+
   render() {
     const { movies, isLoading, errorMessage, sort } = this.props
 
@@ -55,7 +60,7 @@ class MoviesListPage extends Component {
           <RefreshButton handleRefresh={this.handleRefresh} isLoading={isLoading} />
           <SortButton handleSort={this.handleSort} isLoading={isLoading} sort={sort} />
           <ErrorMessage message={errorMessage} />
-          <MoviesList data={movies} />
+          <MoviesList data={movies} handleSelect={this.handleSelectMovie} />
           { isLoading && <Loader /> }
         </Col>
 
@@ -71,4 +76,4 @@ const mapStateToProps = state => ({
   sort: state.movies.sort,
 })
 
-export default connect(mapStateToProps, { getMoviesListRequest, sortMovies })(MoviesListPage)
+export default connect(mapStateToProps, { getMoviesListRequest, sortMovies, redirectToMovieDetails })(MoviesListPage)

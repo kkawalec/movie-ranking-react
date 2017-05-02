@@ -1,11 +1,13 @@
 import axios from 'axios'
 import config from '../config'
+import { push } from 'react-router-redux'
 
 import {
   MOVIES_REQUEST_PENDING,
   MOVIES_REQUEST_SUCCESS,
   MOVIES_REQUEST_ERROR,
   MOVIES_SORT,
+  MOVIE_SELECT,
 } from '../store/constants'
 
 /**
@@ -71,4 +73,12 @@ export function sortMovies() {
   return {
     type: MOVIES_SORT,
   }
+}
+
+/**
+ * Redirecting to movie details
+ * @param {number} id
+ */
+export function redirectToMovieDetails(id) {
+  return dispatch => dispatch(push(`/movie/${id}`))
 }
