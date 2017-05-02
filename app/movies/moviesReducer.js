@@ -4,21 +4,13 @@ import {
   MOVIES_REQUEST_ERROR,
   MOVIES_SORT,
 } from '../store/constants'
+import moviesComparator from './utils/moviesComparator'
 
 const initialState = {
   loading: false,
   data: [],
   error: '',
   sort: 1, // 1 - asc, -1 - desc
-}
-
-const moviesComparator = (sort, param) => {
-  return (a, b) => {
-    if (sort === 1) {
-      return a[param] > b[param] ? 1 : -1
-    }
-    return a[param] > b[param] ? -1 : 1
-  }
 }
 
 /**
@@ -36,7 +28,7 @@ export default (state = initialState, action = {}) => {
         ...state,
         data: action.payload.sort(moviesComparator(state.sort, 'title')),
         error: '',
-        loading: false
+        loading: false,
       }
     case MOVIES_REQUEST_ERROR:
       return { ...state, loading: false, error: action.payload }

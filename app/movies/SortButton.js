@@ -10,12 +10,13 @@ class SortButton extends Component {
   static propTypes = {
     handleSort: PropTypes.func.isRequired,
     isLoading: PropTypes.bool.isRequired,
+    sort: PropTypes.number.isRequired,
   }
 
   render() {
     const { handleSort, isLoading, sort } = this.props
 
-    const style = sort === -1 ? { transform: 'rotate(180deg)' } : {}
+    const iconClassName = sort === -1 ? 'desc' : 'asc'
 
     return (
       <RaisedButton
@@ -25,7 +26,7 @@ class SortButton extends Component {
         onClick={handleSort}
         disabled={isLoading}
         style={{ marginBottom: 10, marginRight: 10 }}
-        icon={<SortIcon style={style} />}
+        icon={<SortIcon className={`u-sort-icon-${iconClassName}`} />}
       />
     )
   }

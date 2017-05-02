@@ -25,7 +25,7 @@ class MoviesList extends Component {
         <List>
           { data.length > 0 ?
             data.map(movie =>
-              <ListItem primaryText={movie.title} key={movie.id}  leftAvatar={<Avatar style={{ borderRadius: 0 }} src={movie.poster} />} />)
+              <ListItem primaryText={movie.title} key={movie.id} leftAvatar={<Avatar style={{ borderRadius: 0 }} src={movie.poster} />} />)
             : <ListItem primaryText="We can't find any movies right now..." />}
         </List>
       </Paper>

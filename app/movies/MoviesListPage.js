@@ -22,6 +22,7 @@ class MoviesListPage extends Component {
     movies: PropTypes.array.isRequired,
     isLoading: PropTypes.bool.isRequired,
     errorMessage: PropTypes.string.isRequired,
+    sort: PropTypes.number.isRequired,
   }
 
   componentDidMount() {
@@ -36,6 +37,9 @@ class MoviesListPage extends Component {
     this.props.getMoviesListRequest()
   }
 
+  /**
+   * Handling sorting list of movies
+   */
   handleSort = (e) => {
     e.preventDefault()
     this.props.sortMovies()
@@ -50,7 +54,6 @@ class MoviesListPage extends Component {
           <Subheader>Movies</Subheader>
           <RefreshButton handleRefresh={this.handleRefresh} isLoading={isLoading} />
           <SortButton handleSort={this.handleSort} isLoading={isLoading} sort={sort} />
-
           <ErrorMessage message={errorMessage} />
           <MoviesList data={movies} />
           { isLoading && <Loader /> }

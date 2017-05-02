@@ -64,6 +64,8 @@ export function getMoviesListRequest() {
 
 /**
  * Sorting movies list
+ * Action creator
+ * @return {Object}
  */
 export function sortMovies() {
   return {

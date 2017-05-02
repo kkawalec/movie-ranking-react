@@ -20,5 +20,21 @@ html, body {
   margin-top: 15px;
 }
 
+.u-sort-icon-asc {
+  -webkit-transform: rotate(0deg); /* Safari and Chrome */
+  -moz-transform: rotate(0deg);   /* Firefox */
+  -ms-transform: rotate(0deg);   /* IE 9 */
+  -o-transform: rotate(0deg);   /* Opera */
+  transform: rotate(0deg);
+}
+
+.u-sort-icon-desc {
+  -webkit-transform: rotate(180deg); /* Safari and Chrome */
+  -moz-transform: rotate(180deg);   /* Firefox */
+  -ms-transform: rotate(180deg);   /* IE 9 */
+  -o-transform: rotate(180deg);   /* Opera */
+  transform: rotate(180deg);
+}
+
 @import 'header';
 @import 'error';
