@@ -36,5 +36,10 @@ html, body {
   transform: rotate(180deg);
 }
 
+.rating {
+  display: flex;
+  align-items: center;
+}
+
 @import 'header';
 @import 'error';

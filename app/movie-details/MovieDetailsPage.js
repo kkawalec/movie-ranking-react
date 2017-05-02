@@ -5,6 +5,8 @@ import React, { Component } from 'react'
 import { Row, Col } from 'react-grid-system'
 import Subheader from 'material-ui/Subheader'
 
+import PosterCard from './PosterCard'
+import RankingCard from './RankingCard'
 import Loader from '../utils/components/Loader'
 import ErrorMessage from '../utils/components/ErrorMessage'
 import RefreshButton from '../utils/components/RefreshButton'
@@ -43,17 +45,17 @@ class MoviesDetailsPage extends Component {
 
   render() {
     const { movieData, isLoading, errorMessage, avgRating, ratings } = this.props
-console.log(movieData)
+
     return (
       <Row>
-        <Col xs={12} lg={6} style={{ marginBottom: 15 }}>
-          <Subheader>Movies details</Subheader>
-          <RefreshButton handleRefresh={this.handleRefresh} isLoading={isLoading} />
+        <Col xs={12} lg={3} style={{ marginBottom: 15 }}>
           <ErrorMessage message={errorMessage} />
-
           { isLoading && <Loader /> }
+          { !isLoading && <PosterCard movie={movieData} />}
         </Col>
-
+        <Col xs={12} lg={6} style={{ marginBottom: 15 }}>
+          { !isLoading && <RankingCard ratings={ratings} avgRating={avgRating} isLoading={isLoading} handleRefresh={this.handleRefresh} />}
+        </Col>
       </Row>
     )
   }
