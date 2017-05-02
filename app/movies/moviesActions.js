@@ -5,6 +5,7 @@ import {
   MOVIES_REQUEST_PENDING,
   MOVIES_REQUEST_SUCCESS,
   MOVIES_REQUEST_ERROR,
+  MOVIES_SORT,
 } from '../store/constants'
 
 /**
@@ -50,15 +51,22 @@ export function getMoviesListRequest() {
     dispatch(getMoviesListRequestPending())
     try {
       const { data } = await axios.get(`${config.apiEndpoint}/movies`)
-      console.log(data)
       dispatch(getMoviesListRequestSuccess(data))
     } catch (err) {
-      console.log(err)
-    //  const { error } = err.response.data
-      // dispatch(getMoviesListRequestError(error))
-      // setTimeout(() => {
-      //   dispatch(getMoviesListRequest())
-      // }, 5000)
+      const error = err.message
+      dispatch(getMoviesListRequestError(error))
+      setTimeout(() => {
+        dispatch(getMoviesListRequest())
+      }, 5000)
     }
+  }
+}
+
+/**
+ * Sorting movies list
+ */
+export function sortMovies() {
+  return {
+    type: MOVIES_SORT,
   }
 }

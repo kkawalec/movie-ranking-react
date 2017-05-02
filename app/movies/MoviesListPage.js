@@ -9,7 +9,8 @@ import Loader from './Loader'
 import MoviesList from './MoviesList'
 import ErrorMessage from './ErrorMessage'
 import RefreshButton from './RefreshButton'
-import { getMoviesListRequest } from './moviesActions'
+import SortButton from './SortButton'
+import { getMoviesListRequest, sortMovies } from './moviesActions'
 
 /**
  * Class rendering main page of the app
@@ -17,6 +18,7 @@ import { getMoviesListRequest } from './moviesActions'
 class MoviesListPage extends Component {
   static propTypes = {
     getMoviesListRequest: PropTypes.func.isRequired,
+    sortMovies: PropTypes.func.isRequired,
     movies: PropTypes.array.isRequired,
     isLoading: PropTypes.bool.isRequired,
     errorMessage: PropTypes.string.isRequired,
@@ -34,15 +36,22 @@ class MoviesListPage extends Component {
     this.props.getMoviesListRequest()
   }
 
+  handleSort = (e) => {
+    e.preventDefault()
+    this.props.sortMovies()
+  }
+
   render() {
-    const { movies, isLoading, errorMessage } = this.props
+    const { movies, isLoading, errorMessage, sort } = this.props
 
     return (
       <Row>
         <Col xs={12} lg={6} style={{ marginBottom: 15 }}>
           <Subheader>Movies</Subheader>
           <RefreshButton handleRefresh={this.handleRefresh} isLoading={isLoading} />
-          {/*<ErrorMessage message={errorMessage} />*/}
+          <SortButton handleSort={this.handleSort} isLoading={isLoading} sort={sort} />
+
+          <ErrorMessage message={errorMessage} />
           <MoviesList data={movies} />
           { isLoading && <Loader /> }
         </Col>
@@ -56,6 +65,7 @@ const mapStateToProps = state => ({
   movies: state.movies.data,
   isLoading: state.movies.loading,
   errorMessage: state.movies.error,
+  sort: state.movies.sort,
 })
 
-export default connect(mapStateToProps, { getMoviesListRequest })(MoviesListPage)
+export default connect(mapStateToProps, { getMoviesListRequest, sortMovies })(MoviesListPage)

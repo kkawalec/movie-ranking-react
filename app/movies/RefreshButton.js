@@ -20,7 +20,7 @@ class RefreshButton extends Component {
         secondary
         onClick={handleRefresh}
         disabled={isLoading}
-        style={{ marginBottom: 10 }}
+        style={{ marginBottom: 10, marginRight: 10 }}
       />
     )
   }

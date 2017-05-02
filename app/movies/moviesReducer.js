@@ -2,13 +2,23 @@ import {
   MOVIES_REQUEST_PENDING,
   MOVIES_REQUEST_SUCCESS,
   MOVIES_REQUEST_ERROR,
+  MOVIES_SORT,
 } from '../store/constants'
 
 const initialState = {
   loading: false,
   data: [],
   error: '',
-  //addressData: [],
+  sort: 1, // 1 - asc, -1 - desc
+}
+
+const moviesComparator = (sort, param) => {
+  return (a, b) => {
+    if (sort === 1) {
+      return a[param] > b[param] ? 1 : -1
+    }
+    return a[param] > b[param] ? -1 : 1
+  }
 }
 
 /**
@@ -22,9 +32,21 @@ export default (state = initialState, action = {}) => {
     case MOVIES_REQUEST_PENDING:
       return { ...state, loading: true }
     case MOVIES_REQUEST_SUCCESS:
-      return { ...state, data: action.payload, error: '', loading: false }
+      return {
+        ...state,
+        data: action.payload.sort(moviesComparator(state.sort, 'title')),
+        error: '',
+        loading: false
+      }
     case MOVIES_REQUEST_ERROR:
       return { ...state, loading: false, error: action.payload }
+    case MOVIES_SORT:
+      const newSort = state.sort === 1 ? -1 : 1
+      return {
+        ...state,
+        sort: newSort,
+        data: state.data.sort(moviesComparator(newSort, 'title')),
+      }
     default: return state
   }
 }
