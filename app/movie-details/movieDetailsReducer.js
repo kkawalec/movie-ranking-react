@@ -2,6 +2,8 @@ import {
   MOVIE_RANKING_REQUEST_PENDING,
   MOVIE_RANKING_REQUEST_SUCCESS,
   MOVIE_RANKING_REQUEST_ERROR,
+  MOVIE_RANKING_POST_SUCCESS,
+  MOVIE_RANKING_POST_ERROR,
 } from '../store/constants'
 
 const initialState = {
@@ -10,6 +12,7 @@ const initialState = {
   avgRating: 0,
   ratings: {},
   error: '',
+  userRating: {}
 }
 
 const arraySumCallback = (previousValue, currentValue) => {
@@ -45,9 +48,15 @@ export default (state = initialState, action = {}) => {
         error: '',
       }
     case MOVIE_RANKING_REQUEST_ERROR:
+    case MOVIE_RANKING_POST_ERROR:
       return {
         ...state,
         error: action.payload,
+      }
+    case MOVIE_RANKING_POST_SUCCESS:
+      return {
+        ...state,
+        userRating: action.payload
       }
     default: return state
   }

@@ -5,6 +5,8 @@ import {
   MOVIE_RANKING_REQUEST_PENDING,
   MOVIE_RANKING_REQUEST_SUCCESS,
   MOVIE_RANKING_REQUEST_ERROR,
+  MOVIE_RANKING_POST_SUCCESS,
+  MOVIE_RANKING_POST_ERROR,
 } from '../store/constants'
 
 /**
@@ -43,7 +45,7 @@ export function getMovieRankingRequestError(err) {
 }
 
 /**
- * Http request to api
+ * Http get request to api
  * @param {number} id
  */
 export function getMovieRankingRequest(id) {
@@ -61,3 +63,38 @@ export function getMovieRankingRequest(id) {
     }
   }
 }
+
+export function addMovieRatingSuccess(data) {
+  return {
+    type: MOVIE_RANKING_POST_SUCCESS,
+    payload: data,
+  }
+}
+
+export function addMovieRatingError(err) {
+  return {
+    type: MOVIE_RANKING_POST_ERROR,
+    payload: err,
+  }
+}
+
+/**
+ * Http post request to api
+ * @param {number} rating
+ */
+export function addMovieRatingRequest(id, rating) {
+  return async (dispatch) => {
+    //dispatch(getMovieRankingRequestPending())
+    try {
+      const { data } = await axios.post(`${config.apiEndpoint}/movies/${id}/ratings`, { rating })
+      dispatch(addMovieRatingSuccess(data))
+    } catch (err) { console.error(err)
+      //const error = err.message
+    //   dispatch(getMovieRankingRequestError(error))
+    //   setTimeout(() => {
+    //     dispatch(getMovieRankingRequest(id))
+    //   }, 5000)
+    }
+  }
+}
+

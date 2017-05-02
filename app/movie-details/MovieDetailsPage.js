@@ -10,7 +10,7 @@ import RankingCard from './RankingCard'
 import Loader from '../utils/components/Loader'
 import ErrorMessage from '../utils/components/ErrorMessage'
 import RefreshButton from '../utils/components/RefreshButton'
-import { getMovieRankingRequest } from './movieDetailsActions'
+import { getMovieRankingRequest, addMovieRatingRequest } from './movieDetailsActions'
 import { getMoviesListRequest } from '../movies/moviesActions'
 
 /**
@@ -42,9 +42,12 @@ class MoviesDetailsPage extends Component {
     this.props.getMovieRankingRequest(this.props.params.id)
   }
 
+  handleAddRating = (rating) => {
+    this.props.addMovieRatingRequest(this.props.params.id, rating)
+  }
 
   render() {
-    const { movieData, isLoading, errorMessage, avgRating, ratings } = this.props
+    const { movieData, isLoading, errorMessage, avgRating, ratings, userRating } = this.props
 
     return (
       <Row>
@@ -54,7 +57,7 @@ class MoviesDetailsPage extends Component {
           { !isLoading && <PosterCard movie={movieData} />}
         </Col>
         <Col xs={12} lg={6} style={{ marginBottom: 15 }}>
-          { !isLoading && <RankingCard ratings={ratings} avgRating={avgRating} isLoading={isLoading} handleRefresh={this.handleRefresh} />}
+          { !isLoading && <RankingCard ratings={ratings} avgRating={avgRating} isLoading={isLoading} handleRefresh={this.handleRefresh} handlePost={this.handleAddRating} userRating={userRating} />}
         </Col>
       </Row>
     )
@@ -67,6 +70,7 @@ const mapStateToProps = (state, ownProps) => ({
   errorMessage: state.movieDetails.error,
   avgRating: state.movieDetails.avgRating,
   ratings: state.movieDetails.ratings,
+  userRating: state.movieDetails.userRating,
 })
 
-export default connect(mapStateToProps, { getMovieRankingRequest, getMoviesListRequest })(MoviesDetailsPage)
+export default connect(mapStateToProps, { getMovieRankingRequest, getMoviesListRequest, addMovieRatingRequest })(MoviesDetailsPage)

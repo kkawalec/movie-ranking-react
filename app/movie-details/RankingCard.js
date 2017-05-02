@@ -8,19 +8,19 @@ import Rank from './Rank'
 import RaisedButton from 'material-ui/RaisedButton'
 import { Link } from 'react-router'
 
-class MovieCard extends Component {
+class RankingCard extends Component {
   render() {
-    const { ratings, avgRating, isLoading, handleRefresh } = this.props
-    console.log(ratings)
+    const { ratings, avgRating, isLoading, handleRefresh, userRating } = this.props
     return (
       <Card style={{ marginBotton: 10 }}>
         <CardTitle title="Stars" subtitle="Rate the movie" />
         <CardText>
           <Subheader>Your rank</Subheader>
           <Rating
-            value={5}
+            value={userRating.rating === undefined ? 4 : userRating.rating}
             max={5}
-            onChange={(value) => console.log(`Rated with value ${value}`)}
+            onChange={(value) => this.props.handlePost(value)}
+            readOnly={userRating.rating !== undefined}
            />
 
           <Subheader>Average rating is: {avgRating.toPrecision(3)}</Subheader>
@@ -36,4 +36,4 @@ class MovieCard extends Component {
   }
 }
 
-export default MovieCard
+export default RankingCard
