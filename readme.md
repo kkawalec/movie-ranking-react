@@ -1,3 +1,5 @@
+[![codebeat badge](https://codebeat.co/badges/5553545d-1d22-4c7c-8b4a-4512955b07a2)](https://codebeat.co/projects/github-com-kkawalec-movie-ranking-react-master)
+
 ## Live demo: http://aedriel-movie-ranking.surge.sh/
 
 This is simple React Redux App displaying list of movies.
