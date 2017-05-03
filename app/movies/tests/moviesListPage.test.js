@@ -5,23 +5,23 @@ import configureMockStore from 'redux-mock-store'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
-import ISSPage from '../ISSPage'
+import MoviesListPage from '../MoviesListPage'
 
 injectTapEventPlugin()
 
 const mockStore = configureMockStore([thunk])
 const store = mockStore({
-  iss: {},
+  movies: {},
 })
 
 const shallowComponent = shallow(
   <MuiThemeProvider>
-    <ISSPage store={store} />
+    <MoviesListPage store={store} />
   </MuiThemeProvider>,
 )
 
-describe('<ISSPage />', () => {
+describe('<MoviesListPage />', () => {
   it('Should render', () => {
-    expect(shallowComponent.find(ISSPage).length).toBe(1)
+    expect(shallowComponent.find(MoviesListPage).length).toBe(1)
   })
 })

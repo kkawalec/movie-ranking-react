@@ -13,6 +13,7 @@ class MoviesList extends Component {
    */
   static propTypes = {
     data: PropTypes.array.isRequired,
+    handleSelect: PropTypes.func.isRequired,
   }
 
   /**

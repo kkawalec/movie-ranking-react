@@ -17,6 +17,6 @@ const component = mount(
 
 describe('<Loader />', () => {
   it('Should render loading message', () => {
-    expect(component.find('.map-loader').text()).toContain('Data is loading')
+    expect(component.find('.loader').text()).toContain('Data is loading')
   })
 })
