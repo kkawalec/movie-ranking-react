@@ -1,11 +1,10 @@
-import React, { Component } from 'react'
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card'
-import FlatButton from 'material-ui/FlatButton'
-import { Rating } from 'material-ui-rating'
-import RefreshButton from '../utils/components/RefreshButton'
-import Subheader from 'material-ui/Subheader'
 import PropTypes from 'prop-types'
+import React, { Component } from 'react'
+import { Rating } from 'material-ui-rating'
 
+/**
+ * Class rendering one rating
+ */
 class Rank extends Component {
   static propTypes = {
     rank: PropTypes.number.isRequired,
@@ -16,7 +15,6 @@ class Rank extends Component {
     const { rank, count } = this.props
     return (
       <div className="rating">
-
         <Rating
           value={rank}
           max={5}

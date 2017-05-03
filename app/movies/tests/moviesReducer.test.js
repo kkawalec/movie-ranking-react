@@ -27,19 +27,19 @@ describe('movies reducer', () => {
   const fakeSuccessPayload = [
     {
       id: 1,
-      title: "Movie 1",
-      poster: "http://www.bitrebels.com/wp-content/uploads/2011/05/Minimalistic-Star-Wars-Poster-Design-1.jpg"
+      title: 'Movie 1',
+      poster: 'http://www.bitrebels.com/wp-content/uploads/2011/05/Minimalistic-Star-Wars-Poster-Design-1.jpg',
     },
     {
       id: 2,
-      title: "Movie 2",
-      poster: "http://www.bitrebels.com/wp-content/uploads/2011/05/Minimalistic-Star-Wars-Poster-Design-2.jpg"
+      title: 'Movie 2',
+      poster: 'http://www.bitrebels.com/wp-content/uploads/2011/05/Minimalistic-Star-Wars-Poster-Design-2.jpg',
     },
     {
       id: 3,
-      title: "Movie 3",
-      poster: "http://www.bitrebels.com/wp-content/uploads/2011/05/Minimalistic-Star-Wars-Poster-Design-3.jpg"
-    }
+      title: 'Movie 3',
+      poster: 'http://www.bitrebels.com/wp-content/uploads/2011/05/Minimalistic-Star-Wars-Poster-Design-3.jpg',
+    },
   ]
 
   it('should handle MOVIES_REQUEST_SUCCESS', () => {
@@ -49,11 +49,11 @@ describe('movies reducer', () => {
         payload: fakeSuccessPayload,
       }),
     ).toEqual({
-        ...initialState,
-        data: fakeSuccessPayload.sort(moviesComparator(1, 'title')),
-        error: '',
-        loading: false,
-      })
+      ...initialState,
+      data: fakeSuccessPayload.sort(moviesComparator(1, 'title')),
+      error: '',
+      loading: false,
+    })
   })
 
   const errorMessage = 'Some error message'
@@ -80,9 +80,9 @@ describe('movies reducer', () => {
         type: types.MOVIES_SORT,
       }),
     ).toEqual({
-        ...stateWithData,
-        sort: -1,
-        data: stateWithData.data.sort(moviesComparator(-1, 'title')),
-      })
+      ...stateWithData,
+      sort: -1,
+      data: stateWithData.data.sort(moviesComparator(-1, 'title')),
+    })
   })
 })

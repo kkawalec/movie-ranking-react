@@ -6,6 +6,9 @@ import {
   MOVIE_RANKING_POST_ERROR,
 } from '../store/constants'
 
+import arraySumCallback from '../utils/array-callbacks/arraySum'
+import ratingsCount from '../utils/array-callbacks/ratingsCount'
+
 const initialState = {
   isLoading: false,
   data: {},
@@ -14,19 +17,6 @@ const initialState = {
   error: '',
   userRating: {},
   movieId: undefined,
-}
-
-const arraySumCallback = (previousValue, currentValue) => {
-  return previousValue + currentValue.rating
-}
-
-const ratingsCount = (previousValue, currentValue) => {
-  if (previousValue.hasOwnProperty(currentValue.rating)) {
-    previousValue[currentValue.rating]++
-    return previousValue
-  }
-  previousValue[currentValue.rating] = 1
-  return previousValue
 }
 
 /**
@@ -44,11 +34,12 @@ export default (state = initialState, action = {}) => {
         ...state,
         isLoading: false,
         data: action.payload,
-        avgRating: action.payload.length !== 0 ? action.payload.reduce(arraySumCallback, 0) / action.payload.length : 0,
+        avgRating: action.payload.length !== 0 ?
+          action.payload.reduce(arraySumCallback, 0) / action.payload.length : 0,
         ratings: action.payload.reduce(ratingsCount, {}),
         error: '',
         movieId: action.movieId,
-        userRating: action.movieId === state.movieId ? state.userRating : {}
+        userRating: action.movieId === state.movieId ? state.userRating : {},
       }
     case MOVIE_RANKING_REQUEST_ERROR:
     case MOVIE_RANKING_POST_ERROR:
@@ -59,7 +50,7 @@ export default (state = initialState, action = {}) => {
     case MOVIE_RANKING_POST_SUCCESS:
       return {
         ...state,
-        userRating: action.payload
+        userRating: action.payload,
       }
     default: return state
   }

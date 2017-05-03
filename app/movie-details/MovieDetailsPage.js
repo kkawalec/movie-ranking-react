@@ -3,13 +3,11 @@ import { connect } from 'react-redux'
 import React, { Component } from 'react'
 
 import { Row, Col } from 'react-grid-system'
-import Subheader from 'material-ui/Subheader'
 
 import PosterCard from './PosterCard'
 import RankingCard from './RankingCard'
 import Loader from '../utils/components/Loader'
 import ErrorMessage from '../utils/components/ErrorMessage'
-import RefreshButton from '../utils/components/RefreshButton'
 import { getMovieRankingRequest, addMovieRatingRequest } from './movieDetailsActions'
 import { getMoviesListRequest } from '../movies/moviesActions'
 
@@ -25,11 +23,16 @@ class MoviesDetailsPage extends Component {
     ratings: PropTypes.object.isRequired,
     isLoading: PropTypes.bool.isRequired,
     errorMessage: PropTypes.string.isRequired,
+    params: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    }).isRequired,
+    addMovieRatingRequest: PropTypes.func.isRequired,
+    userRating: PropTypes.object.isRequired,
   }
 
   componentDidMount() {
     this.props.getMovieRankingRequest(this.props.params.id)
-    if(!this.props.movieData.hasOwnProperty('title')) {
+    if (!this.props.movieData.hasOwnProperty('title')) {
       this.props.getMoviesListRequest()
     }
   }
@@ -57,8 +60,17 @@ class MoviesDetailsPage extends Component {
           { !isLoading && <PosterCard movie={movieData} />}
         </Col>
         <Col xs={12} lg={6} style={{ marginBottom: 15 }}>
-           <ErrorMessage message={errorMessage} />
-          { !isLoading && <RankingCard ratings={ratings} avgRating={avgRating} isLoading={isLoading} handleRefresh={this.handleRefresh} handlePost={this.handleAddRating} userRating={userRating} />}
+          <ErrorMessage message={errorMessage} />
+          { !isLoading &&
+            <RankingCard
+              ratings={ratings}
+              avgRating={avgRating}
+              isLoading={isLoading}
+              handleRefresh={this.handleRefresh}
+              handlePost={this.handleAddRating}
+              userRating={userRating}
+            />
+          }
         </Col>
       </Row>
     )
@@ -66,7 +78,8 @@ class MoviesDetailsPage extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  movieData: state.movies.data.filter(movie => movie.id == ownProps.params.id).reduce((prev, next) => next, {}),
+  movieData: state.movies.data.filter(movie =>
+    movie.id == ownProps.params.id).reduce((prev, next) => next, {}),
   isLoading: state.movieDetails.isLoading,
   errorMessage: state.movieDetails.error,
   avgRating: state.movieDetails.avgRating,
@@ -74,4 +87,8 @@ const mapStateToProps = (state, ownProps) => ({
   userRating: state.movieDetails.userRating,
 })
 
-export default connect(mapStateToProps, { getMovieRankingRequest, getMoviesListRequest, addMovieRatingRequest })(MoviesDetailsPage)
+export default connect(mapStateToProps, {
+  getMovieRankingRequest,
+  getMoviesListRequest,
+  addMovieRatingRequest,
+})(MoviesDetailsPage)

@@ -76,4 +76,8 @@ const mapStateToProps = state => ({
   sort: state.movies.sort,
 })
 
-export default connect(mapStateToProps, { getMoviesListRequest, sortMovies, redirectToMovieDetails })(MoviesListPage)
+export default connect(mapStateToProps, {
+  getMoviesListRequest,
+  sortMovies,
+  redirectToMovieDetails,
+})(MoviesListPage)

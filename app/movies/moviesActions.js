@@ -1,13 +1,12 @@
 import axios from 'axios'
-import config from '../config'
 import { push } from 'react-router-redux'
 
+import config from '../config'
 import {
   MOVIES_REQUEST_PENDING,
   MOVIES_REQUEST_SUCCESS,
   MOVIES_REQUEST_ERROR,
   MOVIES_SORT,
-  MOVIE_SELECT,
 } from '../store/constants'
 
 /**

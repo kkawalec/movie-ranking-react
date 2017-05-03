@@ -32,13 +32,14 @@ export default (state = initialState, action = {}) => {
       }
     case MOVIES_REQUEST_ERROR:
       return { ...state, loading: false, error: action.payload }
-    case MOVIES_SORT:
+    case MOVIES_SORT: {
       const newSort = state.sort === 1 ? -1 : 1
       return {
         ...state,
         sort: newSort,
         data: state.data.sort(moviesComparator(newSort, 'title')),
       }
+    }
     default: return state
   }
 }

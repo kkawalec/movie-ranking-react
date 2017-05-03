@@ -32,6 +32,10 @@
     "linebreak-style": [1, "windows"],
     "import/prefer-default-export": [0],
     "react/prefer-stateless-function": [0],
-    "react/forbid-prop-types": [2, { "forbid": ["any"] }]
+    "react/forbid-prop-types": [2, { "forbid": ["any"] }],
+    "no-prototype-builtins": [0],
+    "eqeqeq": [0],
+    "no-plusplus": [0],
+    "no-param-reassign": [0]
   }
 }

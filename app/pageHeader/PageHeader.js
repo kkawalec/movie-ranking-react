@@ -15,8 +15,8 @@ class PageHeader extends Component {
     return (
       <Row>
         <AppBar
-          title="Where is ISS?"
-          iconElementLeft={<img className="title-img" src={issIcon} alt="ISS" />}
+          title="Movie ranking"
+          iconElementLeft={<img className="title-img" src={issIcon} alt="Movie ranking" />}
         />
       </Row>
     )

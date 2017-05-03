@@ -84,7 +84,7 @@ describe('async movies api request action resolved', () => {
   })
 })
 
-const fakeErrorMoviesRequestPayload = { status: 404,  message: 'some error' }
+const fakeErrorMoviesRequestPayload = { status: 404, message: 'some error' }
 describe('async action rejected', () => {
   beforeEach(() => {
     // replace the .get method temporarily with a spy
@@ -113,6 +113,5 @@ describe('async action rejected', () => {
         expect(store.getActions()[1].payload).toBe('some error')
       })
   })
-
 })
 

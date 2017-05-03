@@ -1,14 +1,24 @@
-import React, { Component } from 'react'
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card'
-import FlatButton from 'material-ui/FlatButton'
-import { Rating } from 'material-ui-rating'
-import RefreshButton from '../utils/components/RefreshButton'
-import Subheader from 'material-ui/Subheader'
-import Rank from './Rank'
-import RaisedButton from 'material-ui/RaisedButton'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router'
+import React, { Component } from 'react'
+import { Rating } from 'material-ui-rating'
+import Subheader from 'material-ui/Subheader'
+import RaisedButton from 'material-ui/RaisedButton'
+import { Card, CardActions, CardTitle, CardText } from 'material-ui/Card'
+
+import Rank from './Rank'
+import RefreshButton from '../utils/components/RefreshButton'
 
 class RankingCard extends Component {
+  static propTypes = {
+    ratings: PropTypes.object.isRequired,
+    avgRating: PropTypes.number.isRequired,
+    isLoading: PropTypes.bool.isRequired,
+    handleRefresh: PropTypes.func.isRequired,
+    userRating: PropTypes.object.isRequired,
+    handlePost: PropTypes.func.isRequired,
+  }
+
   render() {
     const { ratings, avgRating, isLoading, handleRefresh, userRating } = this.props
     return (
@@ -19,12 +29,14 @@ class RankingCard extends Component {
           <Rating
             value={userRating.rating === undefined ? 4 : userRating.rating}
             max={5}
-            onChange={(value) => this.props.handlePost(value)}
+            onChange={value => this.props.handlePost(value)}
             readOnly={userRating.rating !== undefined}
-           />
+          />
 
           <Subheader>Average rating is: {avgRating.toPrecision(3)}</Subheader>
-          {Object.keys(ratings).map(key => <Rank rank={parseInt(key)} count={parseInt(ratings[key])} key={key} />)}
+          {Object.keys(ratings).map(key =>
+            <Rank rank={parseInt(key, 10)} count={parseInt(ratings[key], 10)} key={key} />)
+          }
 
         </CardText>
         <CardActions style={{ paddingLeft: 16 }} >
