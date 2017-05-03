@@ -83,7 +83,11 @@ describe('async movies api ranking request action resolved', () => {
     })
     const expected = [
       { type: types.MOVIE_RANKING_REQUEST_PENDING },
-      { type: types.MOVIE_RANKING_REQUEST_SUCCESS, payload: fakeMoviesRankingsRequestPayload.data, movieId: 1 },
+      {
+        type: types.MOVIE_RANKING_REQUEST_SUCCESS,
+        payload: fakeMoviesRankingsRequestPayload.data,
+        movieId: 1,
+      },
     ]
 
     return store.dispatch(actions.getMovieRankingRequest(1))
@@ -140,7 +144,7 @@ const fakePost = axios.post
 const postResponse = {
   id: 207,
   movie_id: 1,
-  rating: 2
+  rating: 2,
 }
 const fakeMoviesRankingPostPayload = { status: 200, data: postResponse }
 
@@ -175,11 +179,11 @@ describe('async movies api post ranking request action resolved', () => {
 
 const fakePostErrorResponse = {
   errors: [
-    "Rating is not a number",
-    "Rating is not included in the list"
-  ]
+    'Rating is not a number',
+    'Rating is not included in the list',
+  ],
 }
-const fakeErrorPostRatingRequestPayload = { response: { data: fakePostErrorResponse} }
+const fakeErrorPostRatingRequestPayload = { response: { data: fakePostErrorResponse } }
 describe('async movies api ranking post request action rejected', () => {
   beforeEach(() => {
     axios.post = spyExpect.createSpy().andReturn(Promise.reject(fakeErrorPostRatingRequestPayload))
@@ -194,7 +198,10 @@ describe('async movies api ranking post request action rejected', () => {
       movieDetails: {},
     })
     const expected = [
-      { type: types.MOVIE_RANKING_POST_ERROR, payload: fakeErrorPostRatingRequestPayload.response.data.errors[0] },
+      {
+        type: types.MOVIE_RANKING_POST_ERROR,
+        payload: fakeErrorPostRatingRequestPayload.response.data.errors[0],
+      },
     ]
 
     return store.dispatch(actions.addMovieRatingRequest(1, 2))

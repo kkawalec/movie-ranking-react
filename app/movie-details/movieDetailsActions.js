@@ -89,7 +89,7 @@ export function addMovieRatingRequest(id, rating) {
       const { data } = await axios.post(`${config.apiEndpoint}/movies/${id}/ratings`, { rating })
       dispatch(addMovieRatingSuccess(data))
       dispatch(getMovieRankingRequest(id))
-    } catch ({response}) {
+    } catch ({ response }) {
       const error = response.data.errors[0]
       dispatch(addMovieRatingError(error))
     }
