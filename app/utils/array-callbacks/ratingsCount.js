@@ -1,3 +1,9 @@
+/**
+ * Callback for Array.reduce
+ * @param {Object} previousValue
+ * @param {Object} currentValue
+ * @return {Object}
+ */
 const ratingsCount = (previousValue, currentValue) => {
   if (previousValue.hasOwnProperty(currentValue.rating)) {
     previousValue[currentValue.rating]++

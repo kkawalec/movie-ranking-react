@@ -13,6 +13,7 @@ import {
  * Action creator
  * Sending request to api for getting list of movies
  * @return {Object}
+ * @return {Object}
  */
 export function getMovieRankingRequestPending() {
   return {
@@ -24,6 +25,7 @@ export function getMovieRankingRequestPending() {
  * Action creator
  * Getting succesfully movies data from api
  * @param {array} data
+ * @return {Object}
  */
 export function getMovieRankingRequestSuccess(data, id) {
   return {
@@ -37,6 +39,7 @@ export function getMovieRankingRequestSuccess(data, id) {
  * Action creator
  * Handling error from api
  * @param {string} err
+ * @return {Object}
  */
 export function getMovieRankingRequestError(err) {
   return {
@@ -65,6 +68,12 @@ export function getMovieRankingRequest(id) {
   }
 }
 
+/**
+ * Action creator
+ * Handling response after succesfull post request
+ * @param {Object} data
+ * @return {Object}
+ */
 export function addMovieRatingSuccess(data) {
   return {
     type: MOVIE_RANKING_POST_SUCCESS,
@@ -72,6 +81,12 @@ export function addMovieRatingSuccess(data) {
   }
 }
 
+/**
+ * Action creator
+ * Handling error response after post request
+ * @param {string} err
+ * @return {Object}
+ */
 export function addMovieRatingError(err) {
   return {
     type: MOVIE_RANKING_POST_ERROR,

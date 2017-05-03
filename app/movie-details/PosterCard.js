@@ -6,6 +6,9 @@ import { Card, CardMedia, CardTitle } from 'material-ui/Card'
  * Class rendering movie poster
  */
 class PosterCard extends Component {
+  /**
+   * prop types of Poster Card
+   */
   static propTypes = {
     movie: PropTypes.shape({
       title: PropTypes.string.isRequired,
@@ -13,6 +16,9 @@ class PosterCard extends Component {
     }).isRequired,
   }
 
+  /**
+   * Rendering card with poster image
+   */
   render() {
     const { movie } = this.props
     return (

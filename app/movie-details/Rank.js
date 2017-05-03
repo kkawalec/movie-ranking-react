@@ -6,11 +6,17 @@ import { Rating } from 'material-ui-rating'
  * Class rendering one rating
  */
 class Rank extends Component {
+  /**
+   * prop types of Rank component
+   */
   static propTypes = {
     rank: PropTypes.number.isRequired,
     count: PropTypes.number.isRequired,
   }
 
+  /**
+   * rendering one rank component
+   */
   render() {
     const { rank, count } = this.props
     return (

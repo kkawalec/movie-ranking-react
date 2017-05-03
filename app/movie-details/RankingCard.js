@@ -9,7 +9,13 @@ import { Card, CardActions, CardTitle, CardText } from 'material-ui/Card'
 import Rank from './Rank'
 import RefreshButton from '../utils/components/RefreshButton'
 
+/**
+ * Class rendering rating card of movie
+ */
 class RankingCard extends Component {
+  /**
+   * prop types od RankingCard component
+   */
   static propTypes = {
     ratings: PropTypes.object.isRequired,
     avgRating: PropTypes.number.isRequired,
@@ -19,6 +25,9 @@ class RankingCard extends Component {
     handlePost: PropTypes.func.isRequired,
   }
 
+  /**
+   * rendering ratings
+   */
   render() {
     const { ratings, avgRating, isLoading, handleRefresh, userRating } = this.props
     return (

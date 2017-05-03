@@ -7,12 +7,18 @@ import RaisedButton from 'material-ui/RaisedButton'
  * Class rendering sort button
  */
 class SortButton extends Component {
+  /**
+   * prop types of SortButton component
+   */
   static propTypes = {
     handleSort: PropTypes.func.isRequired,
     isLoading: PropTypes.bool.isRequired,
     sort: PropTypes.number.isRequired,
   }
 
+  /**
+   * rendering button
+   */
   render() {
     const { handleSort, isLoading, sort } = this.props
 
